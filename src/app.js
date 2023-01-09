@@ -14,7 +14,7 @@ db.authenticate()
 initModels();
 //vamos a utilizar el metodo sync para sincronmizar el modelo a nuestra base de datos
 //devuelve una promesa y la resolvemos con then
-db.sync()
+db.sync({ alter: true })
   .then(() => {
     console.log("base de datos sincronizada");
   })
