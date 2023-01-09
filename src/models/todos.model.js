@@ -19,11 +19,12 @@ const Todos = db.define("todos", {
   isComplete: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
-    field: "is_complete" //para que respete la convencion de snakecase
+    field: "is_complete", //para que respete la convencion de snakecase
   },
-  user_id: {
+  userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: "user:id",
   },
 });
 
