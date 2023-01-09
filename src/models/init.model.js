@@ -1,6 +1,6 @@
 //se tienen que importar todos nuestros modelos creados
 const Todos = require("./todos.model");
-const Todos_categories = require("./todos_categories.model");
+const Todos_categories = require("./todos-categories.model");
 const Users = require("./users.model");
 const Categories=require("../models/categories.model")
 const initModels=()=>{

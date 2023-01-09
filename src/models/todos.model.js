@@ -24,7 +24,7 @@ const Todos = db.define("todos", {
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    field: "user:id",
+    field: "user_id",
   },
 });
 
