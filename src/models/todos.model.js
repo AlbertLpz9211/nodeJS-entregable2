@@ -16,10 +16,10 @@ const Todos = db.define("todos", {
   description: {
     type: DataTypes.STRING,
   },
-  is_complete: {
+  isComplete: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
-    field: "is_complete"
+    field: "is_complete" //para que respete la convencion de snakecase
   },
   user_id: {
     type: DataTypes.INTEGER,
