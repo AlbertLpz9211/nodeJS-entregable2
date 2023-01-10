@@ -1,5 +1,5 @@
 //importar express
-const express = require("express");
+const express = require ("express");
 const db = require("./utils/database");
 const initModels = require("./models/init.model");
 const Users = require("./models/users.model");
@@ -40,7 +40,7 @@ app.get("/users", async (req, res) => {
     const result = await Users.findAll(); //equivalencia ---> SELECT * FROM users;
     res.status(200).json(result);
   } catch (error) {
-    console.log(error);
+    res.status(400).json(error.message);
   }
 });
 
@@ -51,19 +51,19 @@ app.get("/users/:id", async (req, res) => {
     const result = await Users.findByPk(id);
     res.status(200).json(result);
   } catch (error) {
-    console.log(error);
+    res.status(400).json(error.message);
   }
 });
 
 //obtener un usuario por username
 
-app.get("users/username/:username", async (req, res) => {
+app.get("/users/username/:username", async (req, res) => {
   try {
     const { username } = req.params;
     const result = await Users.findOne({ where: { username } }); //equivale a --> SELECT * FROM users WHERE username = username
     res.status(200).json(result);
   } catch (error) {
-    console.log(error);
+    res.status(400).json(error.message);
   }
 });
 
@@ -97,7 +97,7 @@ app.delete("/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const result = await Users.destroy({ where: { id } });
-    res.status(200).json(result)
+    res.status(200).json(result);
   } catch (error) {
     res.status(400).json(error);
   }
