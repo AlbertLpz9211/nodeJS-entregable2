@@ -1,8 +1,9 @@
 //importar express
-const express = require ("express");
+const express = require("express");
 const db = require("./utils/database");
 const initModels = require("./models/init.model");
 const Users = require("./models/users.model");
+const Todos = require("./models/todos.model");
 
 //crear una instancia de express
 const app = express();
@@ -97,6 +98,57 @@ app.delete("/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const result = await Users.destroy({ where: { id } });
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
+//endpoints para las tareas por hacer (todos)
+app.get("/todos", async (req, res) => {
+  try {
+    const result = await Todos.findAll();
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+});
+
+app.get("/todos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await Todos.findByPk(id);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
+app.post("/todos", async (req, res) => {
+  try {
+    const field = req.body;
+    const result = await Todos.create(field);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+});
+
+app.put("/todos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const field = req.body;
+    const result = await Todos.update(field, { where: { id } });
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
+app.delete("/todos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await Todos.destroy({ where: { id } });
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json(error);
