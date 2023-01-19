@@ -34,7 +34,7 @@ class UserServices {
       throw error;
     }
   }
-  static async updateUser(field, id) {
+  static async update(field, id) {
     try {
       const result = await Users.update(field, { where: { id } });
       return result;
@@ -42,9 +42,10 @@ class UserServices {
       throw error;
     }
   }
-  static async deleteU({id}) {
+  static async delete(id) {
     try {
-      const result = await Users.destroy({where: {id}})
+      const result = await Users.destroy({ where: { id } });
+      return result;
     } catch (error) {
       throw error;
     }

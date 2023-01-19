@@ -36,7 +36,7 @@ const getUserByName = async (req, res) => {
     const result = await UserServices.getByName(username);
     res.status(200).json(result);
   } catch (error) {
-    res.status(400).json(error);
+    res.status(400).json(error.message);
   }
 };
 
@@ -46,30 +46,29 @@ const createUser = async (req, res) => {
     const result = await UserServices.uCreate(user);
     res.status(201).json(result);
   } catch (error) {
-    res.status(400).json(error);
+    res.status(400).json(error.message);
   }
 };
 
 const updateUser = async (req, res) => {
   try {
-    const id = req.params;
+    const {id} = req.params;
     const field = res.body;
-    const result = await updateUser(field, id);
-    res.status(200).json(result);
+    const result = await UserServices.update(field, id);
+    res.json(result);
   } catch (error) {
-    res.status(400).json(error);
+    res.status(400).json(error.message);
   }
 };
 
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await deleteU({ id });
-    res.status(200).json(result);
+    const result = await UserServices.delete(id);
+    res.json(result);
     //validar que el usuario no tenga tareas, si tiene tareas, no se puede eliminar
-    
   } catch (error) {
-    res.json(400).json(error);
+    res.json(400).json(error.message);
   }
 };
 
