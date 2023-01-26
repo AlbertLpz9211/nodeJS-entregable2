@@ -23,10 +23,10 @@ const users = [
   },
 ];
 const todos = [
-  { title: "tarea 1", description: "Descripcion para 1", userId: 1 },
-  { title: "tarea 2", description: "Descripcion para 2", userId: 1 },
-  { title: "tarea imposible", userId: 1 },
-  { title: "dormir", description: "Descripcion para dormir", userId: 1 },
+  { title: "estudiar Node", description: "Descripcion para 1", userId: 1 },
+  { title: "pasear al perro", description: "Descripcion para 2", userId: 1 },
+  { title: "lavar platos", userId: 1 },
+  { title: "ir al chequeo mensual", description: "Descripcion para dormir", userId: 1 },
 ];
 
 const categories = [
@@ -76,5 +76,3 @@ db.sync({ force: true })
     }, 400);
   })
   .catch((error) => console.log(error));
-// const categories = [];
-// const todosCategories = [];

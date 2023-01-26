@@ -19,6 +19,16 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const getUserWithTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await UserServices.getWithTask(id);
+    res.json(result); //por defecto se responde con status 200, por eso se puede omitir poner codigo
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
+
 //obtener un usuario sabiendo su id
 const getUserById = async (req, res) => {
   try {
@@ -79,4 +89,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  getUserWithTask,
 };

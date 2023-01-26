@@ -1,3 +1,4 @@
+const Todos = require("../models/todos.model");
 const Users = require("../models/users.model");
 
 class UserServices {
@@ -45,6 +46,18 @@ class UserServices {
   static async delete(id) {
     try {
       const result = await Users.destroy({ where: { id } });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+  static async getWithTask(id) {
+    try {
+      const result = await Users.findOne({
+        where: { id },
+        attributes: ["username"], //definimos que es lo que queremos responder del modelo consultado
+        include: { model: Todos, as: "task" }, //es importsante relacionar por alias
+      });
       return result;
     } catch (error) {
       throw error;
